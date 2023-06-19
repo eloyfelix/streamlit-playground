@@ -127,7 +127,6 @@ p.segment(
     line_color="black",
 )
 
-
 boxes_data = pd.concat(
     [
         q1.loc[journals].rename(columns={"np_likeness_score": "q1"}),
@@ -161,14 +160,13 @@ bottom_box = p.vbar(
     source=boxes_source,
 )
 
-
 # add hover just to the two box renderers
 box_hover = HoverTool(
     renderers=[top_box, bottom_box],
     tooltips=[
         ("Journal", "@journal"),
         ("q1", "@q1"),
-        ("q2", "@q2"),
+        ("q2 (median)", "@q2"),
         ("q3", "@q3"),
         ("IQR", "@iqr"),
     ],
@@ -181,8 +179,14 @@ p.rect(journals, upper.np_likeness_score, 0.2, 0.01, line_color="black")
 
 # outliers
 if not out.empty:
-    p.circle(outx, outy, size=6, color="black", fill_alpha=0.0)
-
+    outlier_circles = p.circle(outx, outy, size=6, color="black", fill_alpha=0.0)
+    outlier_hover = HoverTool(
+        renderers=[outlier_circles],
+        tooltips=[
+            ("Value", "@y"),
+        ],
+    )
+    p.add_tools(outlier_hover)
 
 p.xgrid.grid_line_color = None
 p.ygrid.grid_line_color = "black"
