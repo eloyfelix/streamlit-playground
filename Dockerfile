@@ -19,7 +19,9 @@ RUN curl -LJ https://ftp.ebi.ac.uk/pub/databases/chembl/ChEMBLdb/releases/chembl
 COPY pages/ pages/
 COPY Home_page.py .
 COPY utils.py .
+COPY similarity_utils.py .
 COPY heatmap.py .
+COPY docs.csv .
 
 
 # Expose the port that Streamlit runs on (default is 8501)

@@ -14,13 +14,18 @@ uploaded_file = st.file_uploader(
     "Upload a CSV file with a **mol_id** and **SMILES** columns", type="csv"
 )
 
+
+@st.cache_data
+def predict_all(df):
+    df["preds"] = df["SMILES"].apply(run_predictions)
+    return df
+
+
 # Check if a file has been uploaded
 if uploaded_file is not None:
     df = pd.read_csv(uploaded_file)
-
-    df["preds"] = df["SMILES"].apply(run_predictions)
+    df = predict_all(df)
     data = np.stack(df["preds"].to_numpy())
-
     x_labels = [o.name for o in ort_session.get_outputs()]
     y_labels = [str(x) for x in df["mol_id"].to_numpy()]
     p = generate_heatmap(data, x_labels, y_labels)
