@@ -6,7 +6,7 @@ import pandas as pd
 
 
 st.title("Similarity search")
-smiles = st_ketcher()
+smiles = st_ketcher("CC(=O)Oc1ccccc1C(=O)O")
 
 threshold = st.slider("Threshold:", min_value=0.0, max_value=1.0, value=0.7)
 

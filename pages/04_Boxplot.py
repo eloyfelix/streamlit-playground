@@ -47,7 +47,7 @@ all_journals = list(agg.keys())
 top_n = all_journals[0:num_journals]
 
 options = st.multiselect(
-    "Select desired Journals (showing by default top 10 journals by mean np_likeness_score)",
+    "Select desired Journals (showing by default top 20 journals by median np_likeness_score)",
     all_journals,
     top_n,
 )
