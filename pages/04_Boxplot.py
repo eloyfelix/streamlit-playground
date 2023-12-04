@@ -7,7 +7,7 @@ import pandas as pd
 
 @st.cache_data
 def fetch_data():
-    df = pd.read_csv("docs.csv")
+    df = pd.read_csv("docs.zip")
     df = df[["np_likeness_score", "journal"]]
     return df
 
@@ -86,9 +86,6 @@ out = grouped.apply(outliers).dropna()
 if not out.empty:
     outx = list(out.index.get_level_values(0))
     outy = list(out.values)
-
-
-# journals = sorted(journals, key=lambda x: q2.loc[x, "np_likeness_score"], reverse=True)
 
 p = figure(
     background_fill_color="#ffffff",
