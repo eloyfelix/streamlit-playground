@@ -21,7 +21,7 @@ COPY Home_page.py .
 COPY utils.py .
 COPY similarity_utils.py .
 COPY heatmap.py .
-COPY docs.csv .
+COPY docs.zip .
 
 
 # Expose the port that Streamlit runs on (default is 8501)
